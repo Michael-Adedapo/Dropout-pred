@@ -12,7 +12,7 @@
 student-dropout-predictor/
 │
 ├── data/
-│   ├── generate_data.py        # You will write this
+│   ├── generate_data.py        
 │   └── students.csv            # Output of generate_data.py
 │
 ├── notebooks/
@@ -22,10 +22,10 @@ student-dropout-predictor/
 │   └── (saved model files go here after training)
 │
 ├── app/
-│   └── streamlit_app.py        # You will write this last
+│   └── streamlit_app.py        
 │
 ├── reports/
-│   └── figures/                # Your saved charts go here
+│   └── figures/                
 │
 ├── requirements.txt
 └── README.md
