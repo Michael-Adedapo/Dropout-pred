@@ -4,6 +4,10 @@ import streamlit as st
 import pandas as pd
 from joblib import load
 
+st.set_page_config(
+    page_title="Student Dropout Prediction",
+    initial_sidebar_state="expanded"  # or "collapsed"
+)
 
 st.title("Student Dropout Prediction")
 st.markdown("""

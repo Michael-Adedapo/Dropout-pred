@@ -3,6 +3,11 @@ import streamlit as st
 from streamlit_app import load_data
 import pandas as pd
 
+st.set_page_config(
+    page_title="Dropout Predictor",
+    initial_sidebar_state="collapsed"  
+)
+
 model = load('models/best_dropout_model.pkl')
 feature_cols = load('models/feature_columns.pkl')
 label_enc = load('models/label_encoders.pkl')
@@ -73,9 +78,6 @@ if submitted:
         "Course_load": course_load,
     }
     
-    st.write("### Submitted Student Data")
-    
-
     student_data = pd.DataFrame([student_details])[feature_cols]
 
     for col, encoder in label_enc.items():
@@ -84,7 +86,8 @@ if submitted:
     prediction = model.predict(student_data)[0]
     prediction_proba = model.predict_proba(student_data)[0][1]
 
+
     if prediction == 1:
-        st.error(f"The student is at risk of dropping out with a probability of {prediction_proba:.2%}.")
+        st.error(f"⚠️ High Dropout Risk — {prediction_proba * 100:.1f}% probability")
     else:
-        st.success(f"The student is not at risk of dropping out with a probability of {(1 - prediction_proba):.2%}.")
+        st.success(f"✅ Low Dropout Risk — {prediction_proba * 100:.1f}% dropout probability")
